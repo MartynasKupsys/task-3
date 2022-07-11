@@ -1,0 +1,16 @@
+
+table {
+    width: 100%;
+}
+
+.main {
+    margin: 20px;
+}
+
+.mat-row:hover .mat-cell {
+    background-color: rgb(230, 230, 230);
+}
+
+.row-is-clicked {
+    font-weight: bold;
+}

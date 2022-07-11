@@ -1,0 +1,38 @@
+<div fxLayout="column" fxLayoutAlign="stretch">
+  <div class="main">
+    <h1>CredoID user list</h1>
+    <table mat-table [dataSource]="users" class="mat-elevation-z8">
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef> Firstname </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef> Lastname </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" mat-row (click)="onSelected(row)"
+        [class.row-is-clicked]="selectedUser == row"></tr>
+    </table>
+  </div>
+  <div class="main" *ngIf="!selectedUser">
+    <mat-card>
+      <mat-card-title>User <b>{{selectedUser.firstName}} {{selectedUser.lastName}}</b> details</mat-card-title>
+
+      <h3>Additioanl info (TODO)</h3>
+      <mat-list>
+        <mat-list-item> Additional 1  </mat-list-item>
+        <mat-list-item> Additioanl 2 </mat-list-item>
+        <mat-list-item> Additional 3 </mat-list-item>
+       </mat-list>
+       <h3>Assigned cards</h3>
+       <mat-list>
+         <mat-list-item> Card data 1  </mat-list-item>
+         <mat-list-item> Card data 2 </mat-list-item>
+         <mat-list-item> Card data 3 </mat-list-item>
+        </mat-list>
+    </mat-card>
+  </div>
+</div>
