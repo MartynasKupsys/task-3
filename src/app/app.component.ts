@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
-      this.authService.login().subscribe(result => {
+      this.authService.login().subscribe((result: boolean) => {
         this.isAuthenticated = result;
         this.fetchUsers();
       });
@@ -26,19 +26,25 @@ export class AppComponent implements OnInit {
   }
 
   fetchUsers() {
-    this.httpClient.get('https://demo.credoid.com/api/users', { headers: { "authorization": this.authService.getHeaderValue() } }).subscribe(result => {
+    this.httpClient.get<User[]>('https://demo.credoid.com/api/users', { headers: { "authorization": this.authService.getHeaderValue() } }).subscribe((result: User[]) =>  {
       this.users = result as User[];
     })
   }
 
   onSelected(user: User) {
     this.selectedUser = user;
-
     // TODO: fetch user details
+    this.httpClient.get<User>(`https://demo.credoid.com/api/users/${user.id}`, { headers: { "authorization": this.authService.getHeaderValue() } }).subscribe((result: User) =>  {
+      this.selectedUser = result as User;
+    })
   }
 }
 
 export class User {
+  id!: number;
   firstName!: string;
   lastName!: string;
+  additional1!: string;
+  additional2!: string;
+  additional3!: string;
 }

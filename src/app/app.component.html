@@ -17,15 +17,15 @@
         [class.row-is-clicked]="selectedUser == row"></tr>
     </table>
   </div>
-  <div class="main" *ngIf="!selectedUser">
+  <div class="main" *ngIf="selectedUser">
     <mat-card>
       <mat-card-title>User <b>{{selectedUser.firstName}} {{selectedUser.lastName}}</b> details</mat-card-title>
 
       <h3>Additioanl info (TODO)</h3>
       <mat-list>
-        <mat-list-item> Additional 1  </mat-list-item>
-        <mat-list-item> Additioanl 2 </mat-list-item>
-        <mat-list-item> Additional 3 </mat-list-item>
+        <mat-list-item> {{selectedUser.additional1}}</mat-list-item>
+        <mat-list-item> {{selectedUser.additional2}}</mat-list-item>
+        <mat-list-item> {{selectedUser.additional3}}</mat-list-item>
        </mat-list>
        <h3>Assigned cards</h3>
        <mat-list>
